@@ -1,13 +1,10 @@
 #! /usr/bin/python3
 
-'''
-Написал: Усков Арсений
-'''
-
 import sys  # Для получения аргументов шелла
 
 from Interpretor import Interpretor
 from Formater import Formater
+
 
 # Форматирование кода. Удаление комментариев и пустых строк
 def format_code(input_file_path: str) -> str:
@@ -20,10 +17,10 @@ def format_code(input_file_path: str) -> str:
 
 
 def main() -> None:
-    list_arguments = sys.argv   # Список 
+    list_arguments = sys.argv                   # Список аргументов шелла
     interpretor = Interpretor(list_arguments)
 
-    if interpretor.is_args_validate():
+    if interpretor.is_args_validate():          # Проверка аргуметов на валидность
         input_file_path = str()
         output_file_path = str()
 
