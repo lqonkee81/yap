@@ -20,25 +20,12 @@ def main() -> None:
     list_arguments = sys.argv                   # Список аргументов шелла
     interpretor = Interpretor(list_arguments)
 
-    if interpretor.is_args_validate():          # Проверка аргуметов на валидность
-        input_file_path = str()
-        output_file_path = str()
+    if not interpretor.is_args_validate():          # Проверка аргуметов на валидность
+        print('Нужно указать только входной файл')
+        quit()
 
-        for i in range(1, len(list_arguments)):
-            if list_arguments[i] == '-f':
-                input_file_path = list_arguments[i + 1]
-            if list_arguments[i] == '-o':
-                output_file_path = list_arguments[i + 1]
-
-        format_code(input_file_path)
-
-    else:
-        if len(list_arguments) == 1:
-            print('Нужно указать файл')
-        elif len(list_arguments) > 2 and len(list_arguments) < 5:
-            print('Нужно указать либо только входной файл, либо входной файл через ключ -f и через ключ -о выходной файл')
-        else:
-            print('Ваще не понял, что ты хотел сделать')
+    input_file_path = sys.argv[1]
+    format_code(input_file_path)
 
 
 if __name__ == '__main__':

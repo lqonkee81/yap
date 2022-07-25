@@ -8,6 +8,7 @@ class Formater:
 
     def __init__(self, code_from_file: str):
         self.__code_from_file = code_from_file
+        self.comment_char = '#'
 
     # =====> Удаление комментариев
     def __remove_comments(self, input_code: list) -> list:
@@ -16,14 +17,13 @@ class Formater:
         Далее удаляет комментарии
         '''
         fr_code = list()
-        comment_char = '#'
 
         for code_string in input_code:
             flag = False
             tmp_str = ''
 
             for i in range(0, len(code_string)):
-                if code_string[i] == comment_char:
+                if code_string[i] == self.comment_char:
                     if not flag:
                         flag = True
                     else:
@@ -48,9 +48,7 @@ class Formater:
 
     # =====> Форматирование строки
     def formating(self):
-        self.__code_after_del_coms = self.__remove_comments(
-            self.__code_from_file)
-        self.__code_after_rem_emp_rows = self.__remove_empty_rows(
-            self.__code_after_del_coms)
+        self.__code_after_del_coms = self.__remove_comments(self.__code_from_file)
+        self.__code_after_rem_emp_rows = self.__remove_empty_rows(self.__code_after_del_coms)
 
         return self.__code_after_rem_emp_rows
